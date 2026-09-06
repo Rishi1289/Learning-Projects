@@ -1,0 +1,89 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  background-color: #f4f0f0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+img{
+    height:80px;
+    width: 80px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.Collection{
+     display: flex;
+     flex-wrap: wrap;
+     gap: 20px;
+     margin: 5px;
+}
+
+.parent{
+    margin:5px;
+    
+    
+    
+}
+
+.card{
+    border-radius: 5px;
+    margin: 5px;
+    height: 400px;
+    width: 280px;
+    background-color: rgb(64, 83, 147);
+    border: 4px solid gold;
+}
+
+.head{
+    height: 100px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     background-color: white;
+     border-radius: 5px;
+     margin: 5px;
+    padding: 14px;
+    border: 6px solid gold;
+
+    
+}
+
+.profiledata h2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profiledata {
+    height: 200px;
+  padding: 20px;
+  font-size: large;
+   background-color: white;
+   margin: 5px;
+   border-radius: 5px;
+}
+ 
+.PowerGrade h2{
+    display: flex;
+    justify-content: space-between;
+}
+.PowerGrade h2 span{
+    color: gold;
+    font-weight: 900px;
+}
+
+.PowerGrade {
+    padding:20px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
