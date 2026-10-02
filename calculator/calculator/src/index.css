@@ -1,0 +1,43 @@
+*{
+    height: auto;
+    width: auto;
+}
+
+.parent{
+    padding: 10px;
+    height: 300px;
+    width: 220px ;
+}
+
+.head{
+    display:flex ;
+    justify-content: space-between;
+    padding-inline: 2px;
+}
+
+.keyboard{
+    margin: 2px;
+    padding: 5px;
+    height: 180px;   
+}
+
+.keyboard .number {
+    background-color: blue;
+    height: 180px;
+    width: 120px;
+    padding: 10px;
+    
+    
+}
+.keyboard button{
+    
+    margin: 4px;
+    font-size: 10px;
+    height: 30px;
+    width: 30px;
+
+}
+
+.calculator{
+    background-color: red;
+}

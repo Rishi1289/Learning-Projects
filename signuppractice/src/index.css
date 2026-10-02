@@ -1,0 +1,250 @@
+/* Css for login */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0e1f 0%, #8a54c0 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.loginbox {
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.loginbox form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.loginbox h1,
+.loginbox h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.loginbox input {
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f9f9f9;
+}
+
+.loginbox input:focus {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+}
+
+.loginbox input::placeholder {
+  color: #aaa;
+}
+
+.loginbox button {
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 5px;
+}
+
+.loginbox button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.loginbox button:active {
+  transform: translateY(0);
+}
+
+.loginbox p {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.loginbox a {
+  text-align: center;
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.loginbox a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .loginbox {
+    padding: 30px 22px;
+  }
+
+  .loginbox input,
+  .loginbox button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* Signup */
+
+/* ---------- Signup Page ---------- */
+.SignupPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.signupbox {
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.signupbox form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.signupbox input {
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f9f9f9;
+}
+
+.signupbox input:focus {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+}
+
+.signupbox input::placeholder {
+  color: #aaa;
+}
+
+.signupbox button {
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 5px;
+}
+
+.signupbox button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.signupbox button:active {
+  transform: translateY(0);
+}
+
+.signupbox p {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.signupbox a {
+  text-align: center;
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.signupbox a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .signupbox {
+    padding: 30px 22px;
+  }
+
+  .signupbox input,
+  .signupbox button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

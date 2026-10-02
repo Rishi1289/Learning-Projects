@@ -1,0 +1,876 @@
+/* =====================================================
+   RESET — global resets and base body styles
+   ===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100dvh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, input, button {
+  font: inherit;
+  max-width: 100%;
+}
+
+/* =====================================================
+   APP SHELL — top-level layout wrappers
+   (.App, .Layout, .main)
+   ===================================================== */
+
+.App {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #000;
+}
+
+.Layout {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #000;
+}
+
+/* main grows to push footer to bottom */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* =====================================================
+   NAVBAR — top navigation bar
+   (.Navbar, .searchbar, .Nav, .loginnav)
+   ===================================================== */
+
+.Navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #000;
+  color: #fff;
+  flex-wrap: wrap;
+  position: relative; /* so the dropdown can layer correctly */
+  z-index: 100;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.searchbar input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 0.75rem;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+.searchbar input:focus {
+  outline: 2px solid #4d90fe;
+}
+
+.Nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.Nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: opacity 0.2s;
+}
+
+.Nav a:hover { opacity: 0.7; }
+
+.loginnav {
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.loginnav:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* =====================================================
+   SEARCH DROPDOWN — live results below the input
+   (.search-input-wrapper, .search-results, etc.)
+   ===================================================== */
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Override input styles for search wrapper context */
+.search-input-wrapper input {
+  width: 100%;
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  max-height: 420px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: dropdownIn 0.15s ease-out;
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom scrollbar for the dropdown */
+.search-results::-webkit-scrollbar { width: 8px; }
+.search-results::-webkit-scrollbar-track { background: #1a1a1a; }
+.search-results::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.search-results::-webkit-scrollbar-thumb:hover { background: #444; }
+
+.search-section-header {
+  padding: 0.6rem 0.9rem 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4d90fe;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1f1f1f;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.search-result-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+  color: #f5f5f5;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.15s ease;
+  align-items: center;
+}
+
+.search-result-item:last-child { border-bottom: none; }
+
+.search-result-item:hover {
+  background: #1c1c1c;
+}
+
+.search-result-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #222;
+}
+
+.search-result-item > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-result-item p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #a0a0a0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-result-item span {
+  display: block;
+  font-size: 0.72rem;
+  color: #6a6a6a;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-results {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8a8a8a;
+}
+
+/* Highlighted matched text */
+.search-result-item mark {
+  background: #4d90fe;
+  color: #ffffff;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* =====================================================
+   FOOTER — bottom footer bar
+   (.Footer, .Foot)
+   ===================================================== */
+
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+  flex-wrap: wrap;
+}
+
+.Foot {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.Foot a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Foot a:hover { text-decoration: underline; }
+
+/* =====================================================
+   LOGIN PAGE — login screen
+   (.loginpage, .loginbox, .InputGroup, .bottom)
+   ===================================================== */
+
+.loginpage {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: #0a0a0a;
+  background-image:
+    radial-gradient(circle at 20% 0%, #1a1a1a 0%, transparent 40%),
+    radial-gradient(circle at 80% 100%, #1a1a1a 0%, transparent 40%);
+}
+
+.loginbox {
+  width: 100%;
+  max-width: 420px;
+  background: #111111;
+  border: 1px solid #222222;
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  color: #f5f5f5;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.loginbox h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.loginbox h1 + p,
+.login-subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #8a8a8a;
+  margin-bottom: 2rem;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+.InputGroup label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.InputGroup input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.InputGroup input::placeholder { color: #5a5a5a; }
+.InputGroup input:hover { border-color: #3a3a3a; }
+.InputGroup input:focus {
+  outline: none;
+  border-color: #ffffff;
+  background: #1f1f1f;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #222222;
+  color: #8a8a8a;
+  font-size: 0.9rem;
+}
+
+.bottom p { margin: 0; }
+
+.bottom a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.bottom a:hover { border-bottom-color: #ffffff; }
+
+.bottom button {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+.bottom button:hover { background: #e5e5e5; }
+.bottom button:active { transform: scale(0.98); }
+.bottom button:disabled {
+  background: #4a4a4a;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   LOGIN PAGE — mobile
+   ===================================================== */
+
+@media (max-width: 480px) {
+  .loginbox { padding: 1.75rem 1.25rem; border-radius: 12px; }
+  .loginbox h1 { font-size: 1.5rem; }
+  .bottom { flex-direction: column; text-align: center; }
+  .bottom button { width: 100%; }
+}
+
+/* =====================================================
+   404 / REGISTER SHARED — centered full-screen page
+   ===================================================== */
+
+.Notfound, .Register {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* =====================================================
+   GLOBAL MOBILE — Navbar, Footer, Login tweaks
+   ===================================================== */
+
+@media (max-width: 640px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .searchbar { flex: 1 1 100%; }
+  .Nav { justify-content: center; gap: 1.25rem; }
+  .loginnav { align-self: center; }
+  .Footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .Foot { justify-content: center; }
+  .loginbox { padding: 1.5rem; }
+
+  /* Search dropdown adjustments for mobile */
+  .search-results {
+    max-height: 60vh;
+  }
+  .search-result-item img {
+    width: 40px;
+    height: 40px;
+  }
+  .search-result-item strong { font-size: 0.85rem; }
+  .search-result-item p { font-size: 0.75rem; }
+}
+
+/* =====================================================
+   REGISTER PAGE — registration screen
+   (.register-page, .register-box, .register-group, etc.)
+   ===================================================== */
+
+.register-page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: #0a0a0a;
+  background-image:
+    radial-gradient(circle at 20% 0%, #1a1a1a 0%, transparent 40%),
+    radial-gradient(circle at 80% 100%, #1a1a1a 0%, transparent 40%);
+}
+
+.register-box {
+  width: 100%;
+  max-width: 460px;
+  background: #111111;
+  border: 1px solid #222222;
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  color: #f5f5f5;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.register-header { text-align: center; margin-bottom: 2rem; }
+
+.register-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.register-subtitle {
+  font-size: 0.9rem;
+  color: #8a8a8a;
+  line-height: 1.4;
+}
+
+.register-form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.register-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.register-group { display: flex; flex-direction: column; }
+
+.register-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.register-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.register-group input::placeholder { color: #5a5a5a; }
+.register-group input:hover { border-color: #3a3a3a; }
+.register-group input:focus {
+  outline: none;
+  border-color: #ffffff;
+  background: #1f1f1f;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.register-error {
+  font-size: 0.875rem;
+  color: #ff8a8a;
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.register-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.95rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+.register-submit:hover { background: #e5e5e5; }
+.register-submit:active { transform: scale(0.99); }
+.register-submit:disabled {
+  background: #4a4a4a;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.register-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #222222;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #8a8a8a;
+}
+
+.register-link {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.register-link:hover { border-bottom-color: #ffffff; }
+
+/* =====================================================
+   REGISTER PAGE — mobile
+   ===================================================== */
+
+@media (max-width: 520px) {
+  .register-box { padding: 1.75rem 1.25rem; border-radius: 12px; }
+  .register-header h1 { font-size: 1.5rem; }
+  .register-row { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   HOME PAGE — main landing page
+   ONE continuous background. All sections are transparent.
+   ===================================================== */
+
+.homepage {
+  flex: 1;
+  color: #e8e8e8;
+
+  /* Single fixed background — no seams between sections */
+  background:
+    radial-gradient(ellipse at 50% 0%, #1c1c1c 0%, #0a0a0a 60%),
+    #0a0a0a;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* All inner sections inherit the homepage background */
+.PromotionalBan,
+.Foodcat,
+.Restaurants,
+.foodcard,
+.RestaurantCard,
+.promotionalcard {
+  background: transparent;
+}
+
+.PromotionalBan {
+  color: #f5f5f5;
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+/* -----------------------------------------------------
+   PROMOTIONAL CARDS — image as background, text on top
+   ----------------------------------------------------- */
+
+.promotionalcard {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  height: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.promotionalcard::-webkit-scrollbar { display: none; }
+
+.Prmcard {
+  position: relative;
+  flex: 0 0 auto;
+  width: 200px;
+  height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: flex-end;
+}
+
+.Prmcard:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Dark gradient so text stays readable over any image */
+.Prmcard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.55) 45%,
+    rgba(0, 0, 0, 0.1) 80%,
+    transparent 100%
+  );
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.Prmcard:hover .Prmcard-overlay { opacity: 0.85; }
+
+.Prmcard-content {
+  position: relative;
+  z-index: 1;
+  padding: 14px 16px;
+  width: 100%;
+}
+
+.Prmcard-offer {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Remove the old image rule — no longer needed */
+.Prmcard img { display: none; }
+
+/* =====================================================
+   HOME PAGE — food categories section
+   (.Foodcat, .foodcard, .FoodCa)
+   ===================================================== */
+
+.Foodcat {
+  padding: 1.25rem 0.75rem;
+  height: auto;
+  min-height: 250px;
+}
+
+.foodcard {
+  display: flex;
+  gap: 14px;
+  padding: 8px 4px;
+  height: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.foodcard::-webkit-scrollbar { display: none; }
+
+.FoodCa {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 8px;
+  height: auto;
+  min-height: 160px;
+  width: 16%;
+  text-align: center;
+  scroll-snap-align: start;
+
+  background: linear-gradient(160deg, #fafafa 0%, #ececec 100%);
+  color: #111111;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+
+.FoodCa:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(160deg, #ffffff 0%, #f2f2f2 100%);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+/* =====================================================
+   HOME PAGE — restaurants section
+   (.Restaurants, .RestaurantCard, .RestCard)
+   ===================================================== */
+
+.Restaurants {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0.75rem;
+  height: auto;
+  min-height: 340px;
+}
+
+.RestaurantCard {
+  display: flex;
+  gap: 14px;
+  padding: 8px 4px;
+  height: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.RestaurantCard::-webkit-scrollbar { display: none; }
+
+.RestCard {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  height: auto;
+  min-height: 240px;
+  width: 20%;
+  scroll-snap-align: start;
+
+  background: linear-gradient(160deg, #fafafa 0%, #ececec 100%);
+  color: #111111;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+
+.RestCard:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(160deg, #ffffff 0%, #f2f2f2 100%);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+.RestCard .Img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+/* =====================================================
+   HOME PAGE — mobile tweaks (cards + promo cards)
+   ===================================================== */
+
+@media (max-width: 640px) {
+  .Prmcard {
+    width: 160px;
+    height: 130px;
+  }
+  .Prmcard-offer { font-size: 0.9rem; }
+
+  .FoodCa {
+    width: 140px;
+    min-height: 140px;
+  }
+
+  .RestCard {
+    width: 220px;
+    min-height: 220px;
+  }
+
+  .PromotionalBan h1 { font-size: 1.5rem; }
+  .PromotionalBan p  { font-size: 0.9rem; }
+}
