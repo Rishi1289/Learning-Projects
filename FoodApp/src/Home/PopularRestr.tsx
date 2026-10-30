@@ -1,23 +1,4 @@
-
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard from "./RestaurantCard";
 import {restaurants} from "../Data/Fooditems";
-
-const PopularRestr = () => {
-  return (
-      <div className='Restaurants'>
-        
-        <div className="RestaurantCard">
-          {restaurants.map(function(restaurant){
-            
-            return <RestaurantCard name ={restaurant.name} Image={restaurant.Image} id={restaurant.id}/> ;
-
-          })}
-          
-          
-        </div>
-      
-    </div>
-  )
-}
-
-export default PopularRestr
+const PopularRestr = () => <div className="Restaurants"><div className="RestaurantCard">{restaurants.map(r => <RestaurantCard key={r.id} id={r.id} name={r.name} Image={"Image" in r ? r.Image : undefined} tag={r.cuisines.join(" · ")}/>)}</div></div>;
+export default PopularRestr;
