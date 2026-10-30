@@ -1,23 +1,4 @@
-import FoodCard from './FoodCard';
-import {restaurants} from "../Data/Fooditems";
-
-
-const Foodcategory = () => {
-  return (
-   <div className="Foodcat">
-       <h1>What are you Hungry For !!</h1>
-      <div className="foodcard">
-        {restaurants.map((restaurant) => 
-        restaurant.categories.map((dish)=>
-          
-        (<FoodCard name={dish.name} id={restaurant.id}/>)
-            
-          
-        )
-        )}
-     </div>
-   </div>
-  )
-}
-
-export default Foodcategory
+import FoodCard from "./FoodCard";
+import { restaurants } from "../Data/Fooditems";
+const Foodcategory = () => <section className="Foodcat"><div className="section-heading"><div><span className="eyebrow">CRAVINGS, SORTED</span><h2>What are you hungry for?</h2></div><p>Explore something delicious today.</p></div><div className="foodcard">{restaurants.flatMap(restaurant => restaurant.categories.map(category => <FoodCard key={`${restaurant.id}-${category.name}`} name={category.name} id={restaurant.id} Image={"Images" in category && typeof category.Images === "string" && category.Images.startsWith("https://images.") ? category.Images : category.dishes[0]?.image} />))}</div></section>;
+export default Foodcategory;
