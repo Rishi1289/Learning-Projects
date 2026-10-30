@@ -1,26 +1,5 @@
-import PromotionalBanner from './PromotionalBanner';
-import Foodcategory from './Foodcategory';
-import PopularRestr from './PopularRestr';
-
-const Home = () => {
-  return (
-    <div className="homepage">
-        <div className="promotionalbanner">
-           <PromotionalBanner/>
-        </div>
-        <div className="foodcategory">
-          <Foodcategory/>
-
-
-        </div>
-        <div className="popularretaurant">
-          <h2>Already have a favourite Restaurant?</h2>
-          <PopularRestr/>
-
-        </div>
-      
-    </div>
-  )
-}
-
-export default Home
+import {Link} from "react-router-dom";
+import Foodcategory from "./Foodcategory";
+import PopularRestr from "./PopularRestr";
+const Home = () => <div className="homepage"><section className="hero"><div className="hero-content"><span className="hero-pill">✦ GOOD FOOD, GOOD MOOD</span><h1>Hungry? We've got <em>you covered.</em></h1><p>From cheesy pizzas to juicy burgers, discover your next favorite meal and order in a few clicks.</p><Link className="primary-btn" to="/Restaurants">Explore restaurants <span>→</span></Link><div className="hero-features"><span>✓ Fresh choices</span><span>✓ Easy ordering</span><span>✓ Delicious variety</span></div></div><div className="hero-image"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1000&auto=format&fit=crop" alt="Delicious burger with fresh ingredients"/></div></section><Foodcategory/><section className="popularretaurant"><div className="section-heading"><div><span className="eyebrow">LOCAL FAVORITES</span><h2>Restaurants you'll love</h2></div><Link to="/Restaurants">See all restaurants →</Link></div><PopularRestr/></section></div>;
+export default Home;
