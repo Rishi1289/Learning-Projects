@@ -1,74 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { restaurants } from "../Data/Fooditems";
-
-
-function RestaurantDetailspage() {
-  const { id } = useParams();
-
-  const restaurant = restaurants.find((r) => r.id === Number(id));
-
-  if (!restaurant) {
-    return (
-      <div className="notFound">
-        <h1>Restaurant not found</h1>
-        <p>No restaurant with id: {id}</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="restaurantPage">
-      <div className="restaurantPageInner">
-
-        {/* ---------- Hero ---------- */}
-        <div className="restaurantHero">
-          <img src={restaurant.Image} alt={restaurant.name} />
-
-          <div className="restaurantHeroInfo">
-            <h1 className="restaurantName">{restaurant.name}</h1>
-
-            <div className="restaurantMeta">
-              {restaurant.cuisines.map((c) => (
-                <span key={c}>{c}</span>
-              ))}
-            </div>
-
-            <p className="restaurantSpecialty">
-              <strong>Specialty:</strong> {restaurant.specialty}
-            </p>
-          </div>
-        </div>
-
-        {/* ---------- Menu ---------- */}
-        <h2 className="menuHeading">Menu</h2>
-
-        {restaurant.categories.map((category) => (
-          <div key={category.name} className="categoryBlock">
-            <h3 className="categoryTitle">{category.name}</h3>
-
-            <div className="dishGrid">
-              {category.dishes.map((dish) => (
-                <div key={dish.id} className="dishCard">
-                  <h4 className="dishName">{dish.name}</h4>
-                  <p className="dishDescription">{dish.description}</p>
-
-                  <ul className="variantList">
-                    {dish.variants.map((variant) => (
-                      <li key={variant.type} className="variantRow">
-                        <span className="variantType">{variant.type}</span>
-                        <span className="variantPrice">₹{variant.price}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-
-      </div>
-    </div>
-  );
+function RestaurantDetailspage(){
+ const {id}=useParams();
+ const restaurant=restaurants.find(r=>r.id===Number(id));
+ if(!restaurant)return <div className="not-found"><h2>Restaurant not found</h2><Link to="/Restaurants">Browse restaurants</Link></div>;
+ return <div className="restaurantPage"><div className="restaurantHero"><img src={"Image" in restaurant && restaurant.Image ? restaurant.Image : restaurant.categories[0]?.dishes[0]?.image} alt={restaurant.name}/><div className="restaurantHeroInfo"><span className="eyebrow">DISCOVER YOUR NEXT FAVORITE</span><h1 className="restaurantName">{restaurant.name}</h1><div className="restaurantMeta">{restaurant.cuisines.map(c=><span key={c}>{c}</span>)}</div><p className="restaurantSpecialty">{restaurant.specialty}</p><Link className="primary-btn" to={`/Fooddetail/${restaurant.id}`}>Order from menu →</Link></div></div><h2 className="menuHeading">Explore the menu</h2>{restaurant.categories.map(category=><section key={category.name} className="categoryBlock"><h3 className="categoryTitle">{category.name}</h3><div className="dishGrid">{category.dishes.map(dish=><article className="dishCard" key={dish.id}><h4 className="dishName">{dish.name}</h4><p className="dishDescription">{dish.description}</p><ul className="variantList">{dish.variants.map(v=><li className="variantRow" key={v.type}><span>{v.type}</span><strong>₹{v.price}</strong></li>)}</ul><Link className="explore-link" to={`/Fooddetail/${restaurant.id}`}>Choose & add →</Link></article>)}</div></section>)}</div>;
 }
-
 export default RestaurantDetailspage;
