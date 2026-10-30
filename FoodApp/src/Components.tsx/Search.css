@@ -1,23 +1,13 @@
-css
-/* Main navbar */
-.searchbar {
-  width: 100%;
-  min-height: 80px;
-  padding: 0 50px;
-  box-sizing: border-box;
-  background-color: #111;
-  color: white;
-
+/* Search lives inside the navbar, not as a second navbar. */
+.Navbar .searchbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-
+  flex: 1 1 300px;
+  min-width: 0;
+  gap: 16px;
   position: relative;
-  z-index: 1000;
 }
 
-/* FoodIt heading */
 .searchbar h2 {
   color: white;
   font-size: 28px;
@@ -25,86 +15,51 @@ css
   white-space: nowrap;
 }
 
-/* Search input */
-.searchbar input {
-  width: 350px;
-  padding: 12px 16px;
-  box-sizing: border-box;
-
-  background-color: #222;
-  color: white;
-
+.Navbar .searchbar input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 10px 14px;
+  background: #222;
+  color: #fff;
   border: 1px solid #444;
   border-radius: 8px;
   outline: none;
-
   font-size: 15px;
-  transition: border-color 0.2s ease;
 }
 
-.searchbar input::placeholder {
-  color: #aaa;
-}
+.searchbar input::placeholder { color: #aaa; }
+.searchbar input:focus { border-color: #aaa; }
 
-.searchbar input:focus {
-  border-color: gray;
-}
-
-/* Search suggestions dropdown */
 .searchresult {
   position: absolute;
-  top: calc(100% - 8px);
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 350px;
+  top: calc(100% + 8px);
+  left: 100px;
+  right: 0;
   max-height: 300px;
   overflow-y: auto;
-
-  background-color: #000;
+  background: #111;
   color: white;
-
   border: 1px solid #333;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  z-index: 1001;
 }
 
-/* Individual search result */
 .searchresult p {
   color: white;
   font-size: 15px;
-
   padding: 13px 16px;
   margin: 0;
-
   cursor: pointer;
   border-bottom: 1px solid #292929;
-
-  transition: background-color 0.2s ease;
 }
+.searchresult p:hover { background: #292929; }
+.searchresult p:last-child { border-bottom: none; }
 
-/* Hover effect */
-.searchresult p:hover {
-  background-color: #292929;
-  color: gray;
+@media (max-width: 640px) {
+  .Navbar .searchbar { flex: 1 1 100%; flex-wrap: wrap; }
+  .Navbar .searchbar input { flex-basis: 100%; }
+  .searchresult { left: 0; }
 }
-
-/* Remove border from last result */
-.searchresult p:last-child {
-  border-bottom: none;
-}
-
-/* Scrollbar */
-.searchresult::-webkit-scrollbar {
-  width: 6px;
-}
-
-.searchresult::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 10px;
-}
-
-.searchresult::-webkit-scrollbar-track {
-  background-color: #111;
-}
-
