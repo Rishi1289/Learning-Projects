@@ -1,43 +1,114 @@
 
-import { Route, Routes } from 'react-router-dom';
-import './App.css'
-import Login from './pages/Login';
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import Restaurant from './pages/RestaurantDetails';
-import Cart from './pages/Cart';
-import NotFound from './pages/NotFound';
-import Register from './pages/Register';
-import Home from './Home/Home';
-import Layout from './pages/Layout';
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
+import Home from "./Home/Home";
+import Layout from "./pages/Layout";
+import RestaurantDetailspage from "./pages/RestaurantDetailspage";
+import Restaurants from "./pages/Restaurants";
+import Fooddetail from "./pages/Fooddetail";
+
+// TypeScript type for cart items
+export type CartItem = {
+  id: number;
+  name: string;
+  image: string;
+  type: string;
+  price: number;
+};
 
 function App() {
- 
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  // Add selected food to cart
+  function addToCart(
+    food: {
+      id: number;
+      name: string;
+      image: string;
+    },
+    variant: {
+      type: string;
+      price: number;
+    }
+  ) {
+    const item: CartItem = {
+      id: food.id,
+      name: food.name,
+      image: food.image,
+      type: variant.type,
+      price: variant.price,
+    };
+
+    setCart((prevCart) => [...prevCart, item]);
+  }
+
+  // Remove one item from cart
+  function removeFromCart(indexToRemove: number) {
+    setCart((prevCart) =>
+      prevCart.filter(
+        (_, index) => index !== indexToRemove
+      )
+    );
+  }
+
+  // Clear entire cart
+  function clearCart() {
+    setCart([]);
+  }
 
   return (
-   <div className='App'>
-     
-       <div>
-        
-         <Routes>
-            <Route path='/Login' element={<Login/>}/>
-            <Route path='/Register' element={<Register/>}/>
+    <div className="App">
+      <div>
+        <Routes>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
 
-            {/* Wraping outlet on the pages that need header and Footer */}
+          {/* Pages with Header and Footer */}
+          <Route
+            path="/"
+            element={<Layout cartCount={cart.length} />}
+          >
+            <Route path="/Home" element={<Home />} />
 
-            <Route path='/' element={<Layout/>}>
-             <Route path='/Home' element={<Home/>}/>
-             <Route path='/Restaurant' element={<Restaurant/>}/>
-             <Route path='/Cart' element={<Cart/>}/>
-             {/* * means any undifined route will move the site to 404 not found */}
-             <Route path='*' element={<NotFound/>}/> 
-            </Route> 
+            <Route
+              path="/Restaurants"
+              element={<Restaurants />}
+            />
 
+            <Route
+              path="/Cart"
+              element={
+                <Cart
+                  cart={cart}
+                  clearCart={clearCart}
+                  removeFromCart={removeFromCart}
+                />
+              }
+            />
 
-          </Routes>
-       </div>
-       
-   </div>
-  )
+            <Route
+              path="/RestaurantDetailspage/:id"
+              element={<RestaurantDetailspage />}
+            />
+
+            <Route
+              path="/Fooddetail/:id"
+              element={
+                <Fooddetail addToCart={addToCart} />
+              }
+            />
+
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

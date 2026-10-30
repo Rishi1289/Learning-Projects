@@ -1,13 +1,19 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+
 
 const FoodCard = (Props) => {
   return (
-    <div className="FoodCa">
+    <Link
+      to={`/Fooddetail/${Props.id}`}
+      className="FoodCa"
+    >
+    <div >
  
-     <h2> {Props.item}</h2>
-     <img src="" alt="Broken Image" />
+     <h2> {Props.name}</h2>
+     <img src={Props.Image} alt={Props.name} />
 
     </div>
+    </Link>
   )
 }
 

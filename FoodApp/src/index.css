@@ -804,7 +804,6 @@ img, input, button {
   display: flex;
   gap: 14px;
   padding: 8px 4px;
-  height: auto;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -813,14 +812,11 @@ img, input, button {
 .RestaurantCard::-webkit-scrollbar { display: none; }
 
 .RestCard {
-  flex: 0 0 auto;
+  flex: 0 0 220px;                       /* 👈 FIXED */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 12px;
-  height: auto;
-  min-height: 240px;
-  width: 20%;
   scroll-snap-align: start;
 
   background: linear-gradient(160deg, #fafafa 0%, #ececec 100%);
@@ -831,6 +827,7 @@ img, input, button {
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   cursor: pointer;
 }
@@ -842,6 +839,7 @@ img, input, button {
     0 14px 28px rgba(0, 0, 0, 0.7),
     0 0 0 1px rgba(255, 255, 255, 0.6) inset;
 }
+
 .RestCard .Img {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -874,3 +872,257 @@ img, input, button {
   .PromotionalBan h1 { font-size: 1.5rem; }
   .PromotionalBan p  { font-size: 0.9rem; }
 }
+
+.RestaurantDetails {
+  padding: 1.25rem 0.75rem;
+  height: auto;
+  min-height: 340px;
+  
+}
+/* =====================================================
+   RESTAURANT DETAILS PAGE — black / white / gray theme
+   ===================================================== */
+
+.restaurantPage {
+  min-height: 100%;
+  padding: 2rem 1.5rem 4rem;
+  background: #0a0a0a;
+  background-image:
+    radial-gradient(circle at 20% 0%, #1a1a1a 0%, transparent 40%),
+    radial-gradient(circle at 80% 100%, #1a1a1a 0%, transparent 40%);
+  color: #f5f5f5;
+}
+
+.restaurantPageInner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ---------- Hero ---------- */
+
+.restaurantHero {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background: #111111;
+  border: 1px solid #222222;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  margin-bottom: 2.5rem;
+}
+
+.restaurantHero img {
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.restaurantHeroInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.restaurantName {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.restaurantMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.restaurantMeta span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a0a0a0;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.restaurantSpecialty {
+  font-size: 1rem;
+  color: #d0d0d0;
+  line-height: 1.5;
+}
+
+.restaurantSpecialty strong {
+  color: #ffffff;
+}
+
+/* ---------- Menu heading ---------- */
+
+.menuHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #222222;
+}
+
+/* ---------- Category blocks ---------- */
+
+.categoryBlock {
+  margin-bottom: 2.5rem;
+}
+
+.categoryTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #a0a0a0;
+  margin: 0 0 1rem;
+}
+
+/* ---------- Dish cards ---------- */
+
+.dishGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.dishCard {
+  background: #111111;
+  border: 1px solid #222222;
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.2s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.dishCard:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #3a3a3a;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+}
+
+.dishName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.dishDescription {
+  font-size: 0.9rem;
+  color: #8a8a8a;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- Variants ---------- */
+
+.variantList {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.variantRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+}
+
+.variantType {
+  font-size: 0.85rem;
+  color: #d0d0d0;
+  font-weight: 500;
+}
+
+.variantPrice {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+  background: #ffffff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---------- Not found ---------- */
+
+.notFound {
+  min-height: 60dvh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: #0a0a0a;
+  color: #f5f5f5;
+}
+
+.notFound h1 {
+  font-size: 1.75rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.notFound p {
+  font-size: 0.95rem;
+  color: #8a8a8a;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 720px) {
+  .restaurantPage {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .restaurantHero {
+    flex-direction: column;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .restaurantHero img {
+    width: 100%;
+  }
+
+  .restaurantName {
+    font-size: 1.5rem;
+  }
+
+  .dishGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

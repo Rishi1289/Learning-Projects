@@ -1,4 +1,3 @@
-import React from 'react'
 import PromotionalBanner from './PromotionalBanner';
 import Foodcategory from './Foodcategory';
 import PopularRestr from './PopularRestr';
@@ -15,10 +14,8 @@ const Home = () => {
 
         </div>
         <div className="popularretaurant">
+          <h2>Already have a favourite Restaurant?</h2>
           <PopularRestr/>
-
-        </div>
-        <div className="popularfood">
 
         </div>
       

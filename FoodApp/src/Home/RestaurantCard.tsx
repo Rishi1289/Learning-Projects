@@ -1,17 +1,22 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+
 
 const RestaurantCard = (Props) => {
   return (
-    <div className="RestCard">
+     <Link
+      to={`/RestaurantDetailspage/${Props.id}`}
+      className="RestCard"
+    >
+    <div>
       <div
         className="Img"
-        style={{ backgroundImage: `url(${Props.Image})` }}
       ></div>
       <div>
         <h2>{Props.name}</h2>
         <p>{Props.tag}</p>
       </div>
     </div>
+    </Link>
   )
 }
 

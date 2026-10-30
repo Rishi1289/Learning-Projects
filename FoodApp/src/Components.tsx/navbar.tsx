@@ -1,41 +1,36 @@
+
 import { Link } from "react-router-dom";
-import {restaurants} from "../Data/Fooditems";
-import { useState } from "react";
+import Search from "./Search";
 
+type NavbarProps = {
+  cartCount: number;
+};
 
-const navbar = () => {
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-
+const Navbar = ({ cartCount }: NavbarProps) => {
   return (
-    <div className='Navbar'>
-     
-      <div className="searchbar">
-         <h2>FoodIt</h2>
-         
-         
-          <input 
-             type="text"
-             placeholder="Search you Delights"
-             value={searchTerm}
-             onChange={(e)=>setSearchTerm(e.target.value )}/>
+    <div className="Navbar">
+      <Search />
 
-             <p>You typed: {searchTerm}</p>
-          
-         </div>
-       <div className='Nav'>
-        <Link to="/home">Home </Link>
-        <Link to="/Restaurant">Restaurant </Link>
-        <Link to="/Cart">Cart </Link>
-        
+      <div className="Nav">
+        <Link to="/home">Home</Link>
+        <Link to="/Restaurants">Restaurant</Link>
+
+        <Link to="/Cart" className="cart-link">
+          Cart
+
+          {cartCount > 0 && (
+            <span className="cart-badge">
+              {cartCount}
+            </span>
+          )}
+        </Link>
+
         <div className="loginnav">
-          <Link to="/Login">Logout </Link>
-          
+          <Link to="/Login">Logout</Link>
         </div>
-       </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default navbar
+export default Navbar;

@@ -1,20 +1,20 @@
-import React from 'react'
 import FoodCard from './FoodCard';
+import {restaurants} from "../Data/Fooditems";
+
 
 const Foodcategory = () => {
-
-
-
   return (
    <div className="Foodcat">
        <h1>What are you Hungry For !!</h1>
       <div className="foodcard">
-       <FoodCard item= 'Pizza'/>
-       <FoodCard item= 'Pasta'/>
-       <FoodCard item= 'Burger'/>
-       <FoodCard item= 'South- Indian'/>
-       <FoodCard item= 'North-Indian'/>
-       <FoodCard item= 'Italian'/>   
+        {restaurants.map((restaurant) => 
+        restaurant.categories.map((dish)=>
+          
+        (<FoodCard name={dish.name} id={restaurant.id}/>)
+            
+          
+        )
+        )}
      </div>
    </div>
   )
